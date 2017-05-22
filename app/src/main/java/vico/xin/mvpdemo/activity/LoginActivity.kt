@@ -1,11 +1,8 @@
 package vico.xin.mvpdemo.activity
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import kotlinx.android.synthetic.main.activity_login.*
-import vico.xin.mvpdemo.MainActivity
-
 import vico.xin.mvpdemo.R
 import vico.xin.mvpdemo.dto.LoginDto
 import vico.xin.mvpdemo.dto.UserAllInfo
