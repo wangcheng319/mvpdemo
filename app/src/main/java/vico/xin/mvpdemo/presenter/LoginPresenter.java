@@ -1,11 +1,7 @@
 package vico.xin.mvpdemo.presenter;
 
-import android.content.Context;
-import android.view.View;
-
 import com.google.gson.Gson;
 
-import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.annotations.NonNull;
 import io.reactivex.disposables.CompositeDisposable;
@@ -24,14 +20,12 @@ import vico.xin.mvpdemo.http.HttpResultSubscriber;
 
 public  class LoginPresenter implements  LoginContract.Presenter {
 
-    private  Context mContext;
     private  LoginContract.View loginView;
 
     //CompositeDisposable用于存放RxJava中的订阅关系
     private CompositeDisposable compositeDisposable;
 
-    public LoginPresenter(Context context,LoginContract.View loginView){
-        this.mContext  = context;
+    public LoginPresenter(LoginContract.View loginView){
         this.loginView = loginView;
         this.compositeDisposable = new CompositeDisposable();
     }
@@ -66,6 +60,7 @@ public  class LoginPresenter implements  LoginContract.Presenter {
                 .subscribe(new HttpResultSubscriber<UserAllInfo>(loginView) {
                     @Override
                     public void onSubscribe(@NonNull Disposable d) {
+                        //添加
                         compositeDisposable.add(d);
                     }
 
@@ -79,7 +74,5 @@ public  class LoginPresenter implements  LoginContract.Presenter {
                         loginView.onError(e.toString());
                     }
                 });
-
-
     }
 }

@@ -12,7 +12,6 @@ public interface LoginContract {
 
         interface  View extends  BaseView<Presenter>{
 
-
                 void onSuccess(UserAllInfo userAllInfo);
 
                 void onError(String s);
