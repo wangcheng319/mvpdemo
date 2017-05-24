@@ -1,15 +1,19 @@
 package vico.xin.mvpdemo.activity
 
-import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.view.View
+import android.view.ViewGroup
+import android.widget.Button
 import kotlinx.android.synthetic.main.activity_first_kotlin.*
 import vico.xin.mvpdemo.R
 
 /**
  * kotlin基本语法
+ *
+ * kotlin 继承和实现都用：
  */
 class FirstKotlinActivity : AppCompatActivity(),View.OnClickListener {
 
@@ -31,6 +35,10 @@ class FirstKotlinActivity : AppCompatActivity(),View.OnClickListener {
         tv_test.text = "hello kotlin"
         tv_test.textSize = 18F
 
+        var btn :Button = container.getChildAt(1) as Button
+        btn.text.length
+        btn.background = resources.getDrawable(R.id.icon)
+
         //单个设置点击事件
         tv_test.setOnClickListener { finish() }
 
@@ -51,6 +59,11 @@ class FirstKotlinActivity : AppCompatActivity(),View.OnClickListener {
 
         //when语句
         whenTest(3)
+
+        //数据类
+        val dataClass = classTest(this,"hello")
+        //数据类复制，只改变了test的值
+        val dataClass1 = dataClass.copy(test = "hello1")
 
     }
 
@@ -109,5 +122,31 @@ class FirstKotlinActivity : AppCompatActivity(),View.OnClickListener {
 
     private fun showResultWithUnit() : Unit {
         Log.d("","this is  Unit")
+
+        val testClass = TestClass("hello")
+        val string :String? = testClass.testFun()
+        Log.d("",string)
+    }
+
+    /**
+     * 构造类
+     */
+    class TestClass(name :String){
+        //类的初始化必须在init函数内
+        var  name1 :String? = null
+        init {
+            name1 = name
+        }
+
+        //公共方法
+         fun testFun() : String? {
+            return name1
+        }
+
+        //私有方法
+        private fun testFunPrivate() :Int{
+            return 1
+        }
+
     }
 }

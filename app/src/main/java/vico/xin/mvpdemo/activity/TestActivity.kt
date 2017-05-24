@@ -5,7 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-
+import kotlinx.android.synthetic.main.activity_test.*
 import vico.xin.mvpdemo.R
 
 /**
@@ -19,9 +19,13 @@ class TestActivity : Activity(), View.OnClickListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_test)
 
-        findViewById(R.id.btn1).setOnClickListener { Log.e("", "this is btn1") }
+        btn1.setOnClickListener { Log.e("", "this is btn1") }
 
-        startActivity(Intent(this@TestActivity, LoginActivity::class.java))
+        //页面跳转    kotlin 调用java   LoginActivity::class.java
+        val  intent = Intent(this@TestActivity,LoginActivity::class.java)
+        intent.putExtra("key","value")
+        startActivity(intent)
+
     }
 
     override fun onClick(v: View) {
@@ -29,6 +33,7 @@ class TestActivity : Activity(), View.OnClickListener {
             R.id.btn1 -> Log.i("", "this is btn1")
             R.id.btn2 -> Log.i("", "this is btn2")
             R.id.btn3 -> Log.i("", "this is btn3")
+
         }
     }
 }
