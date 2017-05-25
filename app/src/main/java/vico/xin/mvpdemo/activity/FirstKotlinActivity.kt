@@ -7,6 +7,7 @@ import android.util.Log
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import io.reactivex.Flowable
 import kotlinx.android.synthetic.main.activity_first_kotlin.*
 import vico.xin.mvpdemo.R
 
@@ -64,6 +65,11 @@ class FirstKotlinActivity : AppCompatActivity(),View.OnClickListener {
         val dataClass = classTest(this,"hello")
         //数据类复制，只改变了test的值
         val dataClass1 = dataClass.copy(test = "hello1")
+
+
+        //rxjava2
+
+        Flowable.just("hello").subscribe { Log.d("he","") }
 
     }
 
