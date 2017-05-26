@@ -2,12 +2,15 @@ package vico.xin.mvpdemo.activity
 
 import android.os.Bundle
 import android.view.View
+import com.jakewharton.rxbinding2.view.RxView
+import io.reactivex.functions.Consumer
 import kotlinx.android.synthetic.main.activity_login.*
 import vico.xin.mvpdemo.R
 import vico.xin.mvpdemo.dto.LoginDto
 import vico.xin.mvpdemo.dto.UserAllInfo
 import vico.xin.mvpdemo.presenter.LoginContract
 import vico.xin.mvpdemo.presenter.LoginPresenter
+import java.util.concurrent.TimeUnit
 
 /**
  * 登录页面,使用kotlin实现
@@ -30,9 +33,14 @@ class LoginActivity : BaseActivity(), LoginContract.View,View.OnClickListener {
 
         presenter = LoginPresenter(this)
 
-        btn.setOnClickListener {
-            login()
-        }
+//        btn.setOnClickListener {
+//            login()
+//        }
+
+        //rxbinding ,button防抖处理，一秒只响应一次
+        RxView.clicks(btn)
+              .throttleFirst(1,TimeUnit.MILLISECONDS)
+              .subscribe( { login() })
 
     }
 
