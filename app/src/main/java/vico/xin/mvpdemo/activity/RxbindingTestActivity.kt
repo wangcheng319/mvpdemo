@@ -8,6 +8,15 @@ import com.jakewharton.rxbinding2.widget.RxTextView
 import kotlinx.android.synthetic.main.activity_rxbinding_test.*
 import vico.xin.mvpdemo.R
 import java.util.concurrent.TimeUnit
+import android.text.method.TextKeyListener.clear
+import io.reactivex.android.schedulers.AndroidSchedulers
+import android.text.TextUtils
+import android.util.Log
+import io.reactivex.functions.Consumer
+import io.reactivex.functions.Function
+import io.reactivex.schedulers.Schedulers
+
+
 
 
 /**
@@ -28,6 +37,14 @@ class RxbindingTestActivity : AppCompatActivity() {
         RxTextView.textChanges(et)
                 .map({ StringBuilder(it).reverse().toString() })
                 .subscribe( {  Toast.makeText(this,"输入的文字："+it,Toast.LENGTH_LONG).show() })
+
+        //延迟600毫秒操作，比较适合edittext,做输入搜索框
+        RxTextView.textChanges(et)
+                .debounce(600, TimeUnit.MILLISECONDS)
+                .map({it.toString()})
+                .observeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe( { Log.d("","延迟600毫秒操作") })
 
 
     }

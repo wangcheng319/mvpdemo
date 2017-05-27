@@ -1,9 +1,9 @@
 package vico.xin.mvpdemo.activity
 
+import android.graphics.Color
 import android.os.Bundle
 import android.view.View
 import com.jakewharton.rxbinding2.view.RxView
-import io.reactivex.functions.Consumer
 import kotlinx.android.synthetic.main.activity_login.*
 import vico.xin.mvpdemo.R
 import vico.xin.mvpdemo.dto.LoginDto
@@ -84,6 +84,7 @@ class LoginActivity : BaseActivity(), LoginContract.View,View.OnClickListener {
 
     override fun onError(s: String) {
         text.text = "登录失败：" + s
+        text.setTextColor(Color.RED)
 
     }
 
