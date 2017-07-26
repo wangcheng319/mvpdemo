@@ -1,7 +1,5 @@
 package vico.xin.mvpdemo.http;
 
-import android.content.Context;
-import android.content.SharedPreferences;
 import android.util.Log;
 
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
@@ -41,6 +39,8 @@ public interface ApiService {
     @FormUrlEncoded
     @POST("/client/custom/login")
     Observable<BaseDto<UserAllInfo>> Login(@Field("json") String json);
+    //可以获取到响应头信息
+//    Observable<retrofit2.Response<BaseDto<UserAllInfo>>> Login(@Field("json") String json);
 
 
 
@@ -124,20 +124,20 @@ public interface ApiService {
             //这里获取请求返回的cookie
             if (!originalResponse.headers("Set-Cookie").isEmpty()) {
                 final StringBuffer cookieBuffer = new StringBuffer();
-//                Observable.from(originalResponse.headers("Set-Cookie"))
-//                        .map(new Function<String, String>() {
-//                            @Override
-//                            public String apply(@NonNull String s) throws Exception {
-//                                String[] cookieArray = s.split(";");
-//                                return cookieArray[0];
-//                            }
-//                        })
-//                        .subscribe(new Consumer<String>() {
-//                            @Override
-//                            public void accept(@NonNull String cookie) throws Exception {
-//                                cookieBuffer.append(cookie).append(";");
-//                            }
-//                        });
+
+                Observable.fromArray(originalResponse.header("Set-Cookie")).map(new Function<String, String>() {
+                    @Override
+                    public String apply(@NonNull String s) throws Exception {
+                        String[] cookieArray = s.split(";");
+                        return cookieArray[0];
+                    }
+                }).subscribe(new Consumer<String>() {
+                    @Override
+                    public void accept(@NonNull String cookie) throws Exception {
+                        cookieBuffer.append(cookie).append(";");
+                    }
+                });
+
 //                SharedPreferences sharedPreferences = MyApplication.getInstance().getApplicationContext().getSharedPreferences("cookie", Context.MODE_PRIVATE);
 //                SharedPreferences.Editor editor = sharedPreferences.edit();
 //                editor.putString("cookie", cookieBuffer.toString());

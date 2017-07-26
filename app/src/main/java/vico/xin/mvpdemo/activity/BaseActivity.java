@@ -7,6 +7,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Window;
 import android.widget.TextView;
 
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+
 import io.reactivex.BackpressureStrategy;
 import io.reactivex.Flowable;
 import io.reactivex.FlowableEmitter;
@@ -35,7 +38,6 @@ public class BaseActivity extends AppCompatActivity {
         progressDialog = new ProgressDialog(this);
         none = (TextView) findViewById(R.id.tv_none);
         error = (TextView) findViewById(R.id.tv_error);
-
         Flowable.create(new FlowableOnSubscribe<String>() {
             @Override
             public void subscribe(@NonNull FlowableEmitter<String> e) throws Exception {

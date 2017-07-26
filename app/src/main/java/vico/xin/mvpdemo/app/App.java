@@ -1,6 +1,7 @@
 package vico.xin.mvpdemo.app;
 
 import android.app.Application;
+import android.support.v4.view.ViewPager;
 
 /**
  * Created by wangc on 2017/5/18
@@ -8,5 +9,8 @@ import android.app.Application;
  */
 
 public class App extends Application {
-
+    @Override
+    public void onCreate() {
+        super.onCreate();
+    }
 }
