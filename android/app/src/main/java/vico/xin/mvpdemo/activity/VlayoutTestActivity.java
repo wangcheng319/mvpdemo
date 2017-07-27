@@ -30,6 +30,10 @@ import vico.xin.mvpdemo.R;
  * date: 2017/7/19 15:04
  *
  * vlayout demo 主要用于复杂页面布局
+ *
+ *
+ * 下面是实现方式比较麻烦------> http://www.jianshu.com/p/8744d180537c
+ * 使用一个adapter传入List<LayoutHelper> 在adapter中做判断处理
 */
 public class VlayoutTestActivity extends AppCompatActivity {
 
