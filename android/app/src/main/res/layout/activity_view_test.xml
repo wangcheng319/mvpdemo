@@ -16,6 +16,12 @@
             android:layout_height="30dp"
             android:layout_gravity="center"/>
 
+        <Button
+            android:id="@+id/btn_to_react"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="to_react"/>
+
     </FrameLayout>
 
 </RelativeLayout>
