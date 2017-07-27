@@ -5,7 +5,7 @@ import android.os.Bundle;
 import android.support.v4.BuildConfig;
 import android.view.KeyEvent;
 
-import com.facebook.react.LifecycleState;
+import com.facebook.react.common.LifecycleState;
 import com.facebook.react.ReactInstanceManager;
 import com.facebook.react.ReactRootView;
 import com.facebook.react.modules.core.DefaultHardwareBackBtnHandler;
