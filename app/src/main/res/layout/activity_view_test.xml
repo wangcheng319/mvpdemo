@@ -5,24 +5,22 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="vico.xin.mvpdemo.activity.LoginActivity">
+    tools:context="vico.xin.mvpdemo.activity.ViewTestActivity">
 
 
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        tools:text="@string/ha"/>
     <Button
-        android:id="@+id/btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:text="@string/login"/>
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:text="hello"
+        android:background="@drawable/btn_select"/>
 
-    <TextView
-        android:id="@+id/text"
+    <Button
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:text="hello"
+        android:background="@drawable/btn_unselect"
+        android:layout_centerInParent="true"/>
 
 </RelativeLayout>

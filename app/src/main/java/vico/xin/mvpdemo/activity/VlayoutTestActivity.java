@@ -2,8 +2,11 @@ package vico.xin.mvpdemo.activity;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.os.Binder;
 import android.os.Bundle;
+import android.os.Messenger;
 import android.support.annotation.NonNull;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -22,6 +25,7 @@ import com.alibaba.android.vlayout.layout.GridLayoutHelper;
 import com.alibaba.android.vlayout.layout.LinearLayoutHelper;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import vico.xin.mvpdemo.R;
@@ -30,6 +34,10 @@ import vico.xin.mvpdemo.R;
  * date: 2017/7/19 15:04
  *
  * vlayout demo 主要用于复杂页面布局
+ *
+ *
+ * 下面是实现方式比较麻烦------> http://www.jianshu.com/p/8744d180537c
+ * 使用一个adapter传入List<LayoutHelper> 在adapter中做判断处理
 */
 public class VlayoutTestActivity extends AppCompatActivity {
 
@@ -39,12 +47,11 @@ public class VlayoutTestActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fragment_tab);
-
-
         recyclerView = (RecyclerView) findViewById(R.id.rl);
         final RecyclerView.RecycledViewPool viewPool = new RecyclerView.RecycledViewPool();
         recyclerView.setRecycledViewPool(viewPool);
         viewPool.setMaxRecycledViews(0, 20);
+
 
         VirtualLayoutManager layoutManager = new VirtualLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
